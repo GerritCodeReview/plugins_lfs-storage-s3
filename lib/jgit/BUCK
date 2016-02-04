@@ -1,0 +1,33 @@
+include_defs('//lib/maven.defs')
+
+REPO = MAVEN_LOCAL # Leave here even if set to MAVEN_CENTRAL.
+VERS = '4.2.0-SNAPSHOT'
+
+maven_jar(
+  name = 'jgit-lfs',
+  id = 'org.eclipse.jgit:org.eclipse.jgit.lfs:' + VERS,
+  license = 'jgit',
+  repository = REPO,
+  unsign = True,
+  exclude = [
+    'about.html',
+    'plugin.properties',
+  ],
+)
+
+maven_jar(
+  name = 'jgit-lfs-server',
+  id = 'org.eclipse.jgit:org.eclipse.jgit.lfs.server:' + VERS,
+  license = 'jgit',
+  repository = REPO,
+  deps = [':jgit-lfs',
+    '//lib:gson',
+    '//lib:servlet-api-3_1',
+  ],
+  unsign = True,
+  exclude = [
+    'about.html',
+    'plugin.properties',
+  ],
+)
+
