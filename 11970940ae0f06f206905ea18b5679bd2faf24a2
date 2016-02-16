@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ddf718e0_06f79ca2",
+        "filename": "BUCK",
+        "patchSetId": 5
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2016-02-16T00:43:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "bd342467_05c3d456",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 12,
+        "endChar": 4
+      },
+      "revId": "11970940ae0f06f206905ea18b5679bd2faf24a2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ddf718e0_43dc665b",
         "filename": "lib/jgit/BUCK",
         "patchSetId": 5
@@ -36,6 +60,24 @@
       "writtenOn": "2016-02-15T06:13:22Z",
       "side": 1,
       "message": "Not used and should be removed.",
+      "revId": "11970940ae0f06f206905ea18b5679bd2faf24a2",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "bd342467_45fa3c64",
+        "filename": "lib/jgit/BUCK",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2016-02-16T00:43:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ddf718e0_43dc665b",
       "revId": "11970940ae0f06f206905ea18b5679bd2faf24a2",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
