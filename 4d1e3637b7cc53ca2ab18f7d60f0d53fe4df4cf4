@@ -34,6 +34,24 @@
       "revId": "4d1e3637b7cc53ca2ab18f7d60f0d53fe4df4cf4",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e24c3916_1b57bb30",
+        "filename": "BUCK",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2016-02-23T10:57:49Z",
+      "side": 1,
+      "message": "According to the stack trace, lfs.server depends indirectly on org.eclipse.jgit.http.apache, sit probably should be pt in the Gerrit core and exported in the plugin-api, so that this plugin wouldn\u0027t need to pull in this dependency.",
+      "parentUuid": "e24c3916_7b5a7f59",
+      "revId": "4d1e3637b7cc53ca2ab18f7d60f0d53fe4df4cf4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
