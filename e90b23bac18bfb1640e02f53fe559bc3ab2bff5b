@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e24c3916_db315346",
+        "filename": "BUCK",
+        "patchSetId": 6
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2016-02-23T09:04:31Z",
+      "side": 1,
+      "message": "\u003e S3Repository needs org.eclipse.jgit.http.apache artefact which is\n \u003e missing in buck dependencies so I am experiencing\n \u003e \n \u003e java.lang.NoClassDefFoundError: org/eclipse/jgit/transport/http/apache/HttpClientConnectionFactory\n\nI see. Given that gerrit core doesn\u0027t use and expose (yet) this dependency, you don\u0027t have other choice as pull it in here and include as transitive dependency in this plugin:\n\n  VERS \u003d \u00274.2.0.201601211800-r\u0027\n  gerrit_plugin(\n    name \u003d \u0027lfs-storage-s3\u0027,\n    srcs \u003d glob([\u0027src/main/java/**/*.java\u0027]),\n    [...]\n    deps \u003d [\u0027:jgit-http-appache\u0027],\n    [...]\n  maven_jar(\n    name \u003d \u0027jgit-http-appache\u0027,\n    id \u003d \u0027org.eclipse.jgit:org.eclipse.jgit.http.apache:\u0027 + VERS,\n    license \u003d \u0027jgit\u0027,\n    unsign \u003d True,\n  )",
+      "revId": "e90b23bac18bfb1640e02f53fe559bc3ab2bff5b",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
