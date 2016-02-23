@@ -16,6 +16,24 @@
       "revId": "4d1e3637b7cc53ca2ab18f7d60f0d53fe4df4cf4",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e24c3916_7b5a7f59",
+        "filename": "BUCK",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2016-02-23T10:55:21Z",
+      "side": 1,
+      "message": "Does it work, when you put \"org.eclipse.jgit:org.eclipse.jgit.http.apache\" in Gerrit core? You shouldn\u0027t need to export it in plugin. Exporting is only needed for compilation of artifacts that would depend on the plugin binary, what we don\u0027t have here.",
+      "parentUuid": "02522dad_dc1aadb4",
+      "revId": "4d1e3637b7cc53ca2ab18f7d60f0d53fe4df4cf4",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
