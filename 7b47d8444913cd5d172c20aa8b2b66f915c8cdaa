@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "425fc5cb_865cca26",
+        "filename": "BUCK",
+        "patchSetId": 10
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2016-03-01T22:02:58Z",
+      "side": 1,
+      "message": "This target doesn\u0027t exist in JGit. The correct name is:\n\n  \u0027@jgit//org.eclipse.jgit.http.apache:http-apache\u0027",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 57
+      },
+      "revId": "7b47d8444913cd5d172c20aa8b2b66f915c8cdaa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "62684971_a788eadf",
         "filename": "BUCK",
         "patchSetId": 10
@@ -37,6 +60,30 @@
       "side": 1,
       "message": "\u003e @DavidO: what is wrong here?\n\nThe build was broken in the latest patch set of this change and coresponding core change. Previously, Gerrit core change exposed these artifacts: [1], tha twere removed in latest patch set: e.g. org.eclipse.jgit.http.apache [1]. So all new LFS artifacts were removed:\n\n  D lib/jgit/org.eclipse.jgit.http.apache/BUCK\n  D lib/jgit/org.eclipse.jgit.lfs.server/BUCK\n  D lib/jgit/org.eclipse.jgit.lfs/BUCK\n\nHere you are trying to reference them again:\n\n  \u0027@jgit//org.eclipse.jgit.http.apache:jgit-http-apache\u0027,\n  \u0027@jgit//org.eclipse.jgit.lfs:jgit-lfs\u0027,\n  \u0027@jgit//org.eclipse.jgit.lfs.server:jgit-lfs-server\u0027,\n\nBut they are gone. I don\u0027t see any org.eclipse.jgit.http.apache directory in gerrit core:\n\n  davido@wizball\u003e ls -1 lib/jgit/\n  buck-out\n  lib\n  org.eclipse.jgit\n  org.eclipse.jgit.archive\n  org.eclipse.jgit.http.server\n  org.eclipse.jgit.junit\n  tools\n\nSo I\u0027m clueless why whould expect that the referenced artifacts would be found? So either restore them in gerrit core, or add them in this plugin without and corss-cell stuff. To not mess around with differences in tree and standalone build mode (in case it will be added later), just add the needed artifacts in this file. E.g.:\n\n  gerrit_plugin(\n    name \u003d \u0027lfs-storage-s3\u0027,\n    srcs \u003d glob([\u0027src/main/java/**/*.java\u0027]),\n    resources \u003d glob([\u0027src/main/resources/**/*\u0027]),\n    deps \u003d [\n      \u0027:jgit-http-apache\u0027,\n      \u0027:jgit-lfs\u0027,\n      \u0027:jgit-lfs-server\u0027,\n    ],\n    [...]\n  maven_jar(\n    name \u003d \u0027jgit-http-apache\u0027,\n    id \u003d \u0027org.eclipse.jgit:org.eclipse.jgit.http.apache:\u0027 + VERS,\n    sha1 \u003d \u00278a589f2c7a623d8fc5a38edbaf11af2061a2baea\u0027,\n    license \u003d \u0027jgit\u0027,\n    repository \u003d REPO,\n    unsign \u003d True,\n    exclude \u003d [\n      \u0027about.html\u0027,\n      \u0027plugin.properties\u0027,\n    ],\n  )\n  maven_jar(\n    name \u003d \u0027jgit-lfs\u0027,\n    [...]\n\nOne suggestion, next time you are doing such an introusive change in a new  patch set as in [1] below (between 11 and 12 patch sets) it wouldn\u0027t hurt to leave a comment why are you doing that change. I don\u0027t see any explanation, why patch set 12 in gerrit core change removed all LFS related stuff form gerrit core.\n\n* [1] https://gerrit-review.googlesource.com/#/c/72891/11..12/lib/jgit/org.eclipse.jgit.http.apache/BUCK",
       "parentUuid": "62684971_a788eadf",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 57
+      },
+      "revId": "7b47d8444913cd5d172c20aa8b2b66f915c8cdaa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "62684971_e73582d8",
+        "filename": "BUCK",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2016-03-01T22:02:58Z",
+      "side": 1,
+      "message": "\u003e So, cross-cell support is not working from in-tree plugin build?\n\nI\u0027m not sure I quite understand your question. Are you considering to offer in-tree plugin build and only support hijacked-cell mode (that means that you would always have to overwrite the default jgit cell location:\n\n  [repositories]\n    jgit \u003d /home/davido/projects/jgit\n\nThis would work, when you would fix a bug and replace non-existing target on line 9:\n\n  \u0027@jgit//org.eclipse.jgit.http.apache:jgit-http-apache\u0027,\n\nwith the correct one:\n\n  \u0027@jgit//org.eclipse.jgit.http.apache:http-apache\u0027,\n\n(by removing non existing prefix: \"jgit-\"). But this approach has number of serious disadvantages:\n\n* 1. For one everyone who would like to compile this plugin would end up cloning JGit.\n* 2. You would pull non-wanted transitive dependencies into your plugin and would duplicate packaging of JGit core in plugin ueber-JAR and in Gerrit core itself. Why? Because LFS artifacts in JGit repository do transitively depend on JGit itself:\n\n  cat jgit/org.eclipse.jgit.lfs/BUCK\n  [...]\n  java_library(\n    name \u003d \u0027jgit-lfs\u0027,\n    srcs \u003d SRCS,\n    resources \u003d RESOURCES,\n    deps \u003d [\n      \u0027//org.eclipse.jgit:jgit\u0027\n    ],\n    visibility \u003d [\u0027PUBLIC\u0027],\n  )\n\n* 3. You could mess up with different versions of core JGit in core and your plugin. Why? Because you can\u0027t control the hijacked cell state of JGit when users would build it, they could easily end up mixing non compatible versions of JGIt in this plugin (transitively dependency) and gerrit core itself.",
+      "parentUuid": "62684971_276e3acc",
       "range": {
         "startLine": 9,
         "startChar": 0,
