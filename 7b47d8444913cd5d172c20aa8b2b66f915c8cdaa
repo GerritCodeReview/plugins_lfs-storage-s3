@@ -93,6 +93,30 @@
       "revId": "7b47d8444913cd5d172c20aa8b2b66f915c8cdaa",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "62684971_070456f7",
+        "filename": "BUCK",
+        "patchSetId": 10
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2016-03-02T06:00:47Z",
+      "side": 1,
+      "message": "On second thoughts, after sleeping on this, I think that hijacked cell may be really useful build scenario for developers. So that would make sense to support both approaches: standard build with fetched LFS artifacts on its own and hijacked cell artifacts from JGit developer tree.\n\nI have never tried it, but there is read_config() method that is able to read config variables from the .buckconfig file: [1]. So the idea is to read \u0027repositories.jgit\u0027 and fetch the JGit artifact when standard is used (lib/jgit) or rely on the cross-cell support otherwise. We should decoument the different modes. Untested, but something like this should work:\n\n  jgit \u003d read_config(\u0027repositories\u0027, \u0027jgit\u0027)\n  if jgit \u003d\u003d \u0027lib/jgit\u0027:\n    DEPS \u003d [\n      \u0027:jgit-http-apache\u0027,\n      \u0027:jgit-lfs\u0027,\n      \u0027:jgit-lfs-server\u0027,\n    ]\n  else:\n    DEPS \u003d [\n      \u0027@jgit//org.eclipse.jgit.http.apache:http-apache\u0027,\n      \u0027@jgit//org.eclipse.jgit.lfs:jgit-lfs\u0027,\n      \u0027@jgit//org.eclipse.jgit.lfs.server:jgit-lfs-server\u0027,\n    ]  \n  gerrit_plugin(\n    name \u003d \u0027lfs-storage-s3\u0027,\n    srcs \u003d glob([\u0027src/main/java/**/*.java\u0027]),\n    resources \u003d glob([\u0027src/main/resources/**/*\u0027]),\n    deps \u003d DEPS,\n    manifest_entries \u003d [\n      \u0027Gerrit-PluginName: lfs-storage-s3\u0027,\n      \u0027Gerrit-Module: com.googlesource.gerrit.plugins.lfs.s3.Module\u0027,\n      \u0027Gerrit-HttpModule: com.googlesource.gerrit.plugins.lfs.s3.HttpModule\u0027,\n    ],\n  )\n  maven_jar(\n    name \u003d \u0027jgit-http-apache\u0027,\n    id \u003d \u0027org.eclipse.jgit:org.eclipse.jgit.http.apache:\u0027 + VERS,\n    sha1 \u003d \u00278a589f2c7a623d8fc5a38edbaf11af2061a2baea\u0027,\n    license \u003d \u0027jgit\u0027,\n    repository \u003d REPO,\n    unsign \u003d True,\n    exclude \u003d [\n      \u0027about.html\u0027,\n      \u0027plugin.properties\u0027,\n    ],\n  )\n  maven_jar(\n    name \u003d \u0027jgit-lfs\u0027,\n    [...]\n\n* [1] https://buckbuild.com/function/read_config.html",
+      "parentUuid": "62684971_e73582d8",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 57
+      },
+      "revId": "7b47d8444913cd5d172c20aa8b2b66f915c8cdaa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
