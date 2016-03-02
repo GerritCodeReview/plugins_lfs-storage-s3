@@ -167,6 +167,30 @@
     },
     {
       "key": {
+        "uuid": "425fc5cb_0679ba55",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/lfs/s3/Module.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2016-03-02T15:21:40Z",
+      "side": 1,
+      "message": "actually this whole module is not needed any more",
+      "parentUuid": "425fc5cb_46281262",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 26,
+        "endChar": 38
+      },
+      "revId": "7b47d8444913cd5d172c20aa8b2b66f915c8cdaa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "62684971_47232e90",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/lfs/s3/S3LargeFileRepository.java",
         "patchSetId": 10
@@ -178,6 +202,24 @@
       "writtenOn": "2016-03-02T07:39:01Z",
       "side": 1,
       "message": "@Singleton ?",
+      "revId": "7b47d8444913cd5d172c20aa8b2b66f915c8cdaa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "425fc5cb_8664cab1",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/lfs/s3/S3LargeFileRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2016-03-02T15:21:40Z",
+      "side": 1,
+      "message": "hmm... good question. Although we didn\u0027t annotate this as a singleton,\neffectively we only used one instance of it since the LfsApiServlet is a singleton and it gets one instance of this class in its constructor.\n\nHowever, JGit is not telling anything about thread safety of the (base class) S3Repository. This needs to be clarified asap.",
+      "parentUuid": "62684971_47232e90",
       "revId": "7b47d8444913cd5d172c20aa8b2b66f915c8cdaa",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
@@ -201,6 +243,24 @@
     },
     {
       "key": {
+        "uuid": "62684971_47c48eb2",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/lfs/s3/S3LargeFileRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2016-03-02T15:21:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "62684971_a790eaca",
+      "revId": "7b47d8444913cd5d172c20aa8b2b66f915c8cdaa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "425fc5cb_66250e89",
         "filename": "src/main/java/com/googlesource/gerrit/plugins/lfs/s3/S3LargeFileRepository.java",
         "patchSetId": 10
@@ -212,6 +272,24 @@
       "writtenOn": "2016-03-02T12:04:59Z",
       "side": 1,
       "message": "remove these debugging logs",
+      "revId": "7b47d8444913cd5d172c20aa8b2b66f915c8cdaa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "425fc5cb_a669c688",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/lfs/s3/S3LargeFileRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1003873
+      },
+      "writtenOn": "2016-03-02T15:21:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "425fc5cb_66250e89",
       "revId": "7b47d8444913cd5d172c20aa8b2b66f915c8cdaa",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
