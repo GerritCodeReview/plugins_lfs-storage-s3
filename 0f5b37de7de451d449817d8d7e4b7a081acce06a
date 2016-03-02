@@ -16,6 +16,23 @@
       "revId": "0f5b37de7de451d449817d8d7e4b7a081acce06a",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "62684971_a7d8ea69",
+        "filename": "src/main/resources/Documentation/config.md",
+        "patchSetId": 11
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1004034
+      },
+      "writtenOn": "2016-03-02T23:22:03Z",
+      "side": 1,
+      "message": "the rendered documentation looks broken, though I couldn\u0027t find the reason yet",
+      "revId": "0f5b37de7de451d449817d8d7e4b7a081acce06a",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
