@@ -117,6 +117,46 @@
       "revId": "7b47d8444913cd5d172c20aa8b2b66f915c8cdaa",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "62684971_a70d4a18",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/lfs/s3/Module.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2016-03-02T07:39:01Z",
+      "side": 1,
+      "message": "Is this needed?",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 26,
+        "endChar": 38
+      },
+      "revId": "7b47d8444913cd5d172c20aa8b2b66f915c8cdaa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "62684971_47232e90",
+        "filename": "src/main/java/com/googlesource/gerrit/plugins/lfs/s3/S3LargeFileRepository.java",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1007114
+      },
+      "writtenOn": "2016-03-02T07:39:01Z",
+      "side": 1,
+      "message": "@Singleton ?",
+      "revId": "7b47d8444913cd5d172c20aa8b2b66f915c8cdaa",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
